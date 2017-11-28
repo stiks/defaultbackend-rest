@@ -1,33 +1,3 @@
-# Default Backend Server
-
-This is a simple webserver that satisfies the ingress, which means it has to do two things:
-
- 1. Serves a 404 page at `/`
- 2. Serves 200 on a `/healthz`
-
-Server respond JSON instead of plain text
-
-Not found page:
-```
-$ curl http://localhost:8080
-{"code":404,"message":"Not found"}
-```
-
-Status page:
-
-```
-$ curl http://localhost:8080/healthz
-{"status":"ok"}
-```
-
-## Why?!
-
-In my projects, it's important that alive server respond JSON, even if this is default backend server. This image is only 2mb which is extreamly small compare to others custom error images.
-
-Also I personally think JSON response looks better than html error without formatting
-
-Example usage:
-```
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -78,4 +48,3 @@ spec:
     protocol: TCP
   selector:
     app: default-http-backend
-```
